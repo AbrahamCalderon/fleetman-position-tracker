@@ -51,7 +51,9 @@
       register: ec2
 
     - name: Gather the new ip addresses
-      add_host: groups=new_ec2_instances hostname="{{ item.public_ip }}"
+      add_host: 
+        groups: new_ec2_instances
+        hostname: "{{ item.public_ip }}"
       loop: "{{ ec2.instances }}"
 
     - name: Wait for SSH Server to start responding
