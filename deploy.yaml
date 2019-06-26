@@ -56,9 +56,9 @@
 
     - name: Wait for SSH Server to start responding
       wait_for:
-              port: 22
-              host: "{{ item.public_ip }}"
-              state: started
+        port: 22
+        host: "{{ item.public_ip }}"
+        state: started
       loop: "{{ ec2.instances }}"
 
 - hosts: new_ec2_instances, tag_Name_Dummy_Test
@@ -66,12 +66,14 @@
   tasks:
 
     - name: Hello World, is this Working?
-      debug: msg="Hello? Is this working?"
+      debug: 
+        msg: "Hello? Is this working?"
 
     - name: Patch up the server - this will test if we can SSH
-      yum: name=* state=latest
+      yum: 
+        name: '*'
+        state: latest
       become: yes
-
 
 - hosts: localhost
 
