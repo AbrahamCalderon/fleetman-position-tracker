@@ -5,7 +5,7 @@
   vars:
      region: us-west-2
      instance_type: t2.nano
-     base_image_name: ami-70edb016
+     base_image_name: ami-07669fc90e6e6cc47
      number_of_instances_to_create: 1
 
   tasks:
@@ -52,14 +52,14 @@
 
     - name: Gather the new ip addresses
       add_host: groups=new_ec2_instances hostname="{{ item.public_ip }}"
-      with_items: "{{ ec2.instances }}"
+      loop: "{{ ec2.instances }}"
 
     - name: Wait for SSH Server to start responding
       wait_for:
               port: 22
               host: "{{ item.public_ip }}"
               state: started
-      with_items: "{{ ec2.instances }}"
+      loop: "{{ ec2.instances }}"
 
 - hosts: new_ec2_instances, tag_Name_Dummy_Test
 
