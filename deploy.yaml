@@ -67,13 +67,17 @@
 - hosts: ec2hosts
   tasks:
   - name: upgrade all packages
-    yum: name=* state=latest
+    yum:
+      name: '*'
+      state: latest
+      lock_timeout: 240
     become: true
   
   - name: Install JDK
     yum:
        name: java-1.8.0-openjdk-devel
        state: latest
+       lock_timeout: 240
     become: true
 
   - name: Use Java8 for Runtime Java
