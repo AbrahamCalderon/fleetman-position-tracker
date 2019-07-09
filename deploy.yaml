@@ -113,7 +113,7 @@
 - hosts: localhost
   tasks:
   - name: Gather facts about the new blue server
-    ec2_remote_facts:
+    ec2_instance_facts:
        filters:
           "tag:Deploy": Blue
           "tag:Name": Position_Tracker
@@ -122,7 +122,7 @@
     register: new_server
 
   - name: Get the id of the old, soon to be dead, green server
-    ec2_remote_facts:
+    ec2_instance_facts:
        filters:
           "tag:Deploy": Green
           "tag:Name": Position_Tracker
