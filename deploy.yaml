@@ -79,7 +79,7 @@
   - name: Use Java8 for Runtime Java
     alternatives:
        name: java
-       path: /usr/lib/jvm/jre-1.8.0-openjdk.x86_64/bin/java
+       path: /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.201.b09-0.amzn2.x86_64/jre/bin/java
        link: /usr/bin/java
     become: true
 
